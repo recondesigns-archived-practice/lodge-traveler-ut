@@ -26,27 +26,39 @@ export default function ListPage() {
     const [lodges, setLodges] = useState([])
     const ref = firebase.firestore().collection('lodges')
 
-    function getLodges() {
-        setIsLoading(true)
+    // function getLodges() {
+    //     if (isLoading === false) {
+    //         setIsLoading(true)
+    //     }
 
-        ref.onSnapshot((snapShot) => {
-            const items = []
-            snapShot.forEach((doc) => {
-                items.push(doc.data())
-            })
+    //     ref.onSnapshot((snapShot) => {
+    //         const items = []
+    //         snapShot.forEach((doc) => {
+    //             items.push(doc.data())
+    //         })
 
-            setLodges(items)
-        })
-    }
+    //         setLodges(items)
+    //     })
+    // }
 
     useEffect(() => {
+        function getLodges() {
+            if (isLoading === false) {
+                setIsLoading(true)
+            }
+    
+            ref.onSnapshot((snapShot) => {
+                const items = []
+                snapShot.forEach((doc) => {
+                    items.push(doc.data())
+                })
+    
+                setLodges(items)
+            })
+        }
         getLodges()
-    }, [])
-
-    if (isLoading === false) {
-        return <h1>Loading...</h1>
-    }
-
+    }, [isLoading, ref])
+    
     let list = lodges.map((lodge) => {
         const { 
             name,
