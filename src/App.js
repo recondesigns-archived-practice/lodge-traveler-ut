@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import designIcon from './assets/icons/design-icon.svg'
-import mapStyles from './mapStyles'
+import LandingPage from './LandingPage'
+// import designIcon from './assets/icons/design-icon.svg'
+// import mapStyles from './mapStyles'
 
 import { 
     GoogleMap, 
@@ -38,7 +39,7 @@ function Map() {
     <GoogleMap
       defaultZoom={10}
       defaultCenter={{ lat: 30.7582, lng: -98.2284 }}
-      defaultOptions={{styles: mapStyles}}
+      // defaultOptions={{styles: mapStyles}}
     > 
 
     {lodgeData.map((lodge) => {
@@ -73,14 +74,15 @@ const WrappedMap = withScriptjs(withGoogleMap(Map))
 export default function App() {
 
   return (
-    <div style={{ width: '100vw', height: '100vh' }}>
-      <h1>{'Lodge Traveler - UT'}</h1>
-      <WrappedMap
-        googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_KEY}`}
-        loadingElement={<div style={{ height: '100%' }} />}
-        containerElement={<div style={{ height: '100%' }} />}
-        mapElement={<div style={{ height: '100%' }} />}
-      />
-    </div>
+    <LandingPage />
+    // <div style={{ width: '100vw', height: '100vh' }}>
+    //   <h1>{'Lodge Traveler - UT'}</h1>
+    //   <WrappedMap
+    //     googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_KEY}`}
+    //     loadingElement={<div style={{ height: '100%' }} />}
+    //     containerElement={<div style={{ height: '100%' }} />}
+    //     mapElement={<div style={{ height: '100%' }} />}
+    //   />
+    // </div>
   )
 }
