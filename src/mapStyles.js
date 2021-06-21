@@ -1,4 +1,4 @@
-export default mapStyles = [
+export default [
     {
         "featureType": "all",
         "elementType": "all",

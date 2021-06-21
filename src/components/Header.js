@@ -2,6 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 
 const StyledHeader = styled.header`
+    position: absolute;
+    top: 0px;
+    z-index: 4;
     // background: white;
     padding: 80px 20px 8px 20px;
     border: 4px solid #414141;
