@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useHistory } from 'react-router-dom'
 import Header from './components/Header'
 import Button from './components/Button'
 
@@ -8,7 +9,6 @@ const Page = styled.main`
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    // position: relative;
     box-sizing: border-box;
     padding: 0px 0px 0px 0px;
     height: 100vh;
@@ -16,11 +16,13 @@ const Page = styled.main`
     // border: 4px solid lightcoral;
 `
 
-function handleClick() {
-    console.log('button fired')
-}
-
 export default function LandingPage() {
+    const history = useHistory()
+
+    function handleClick() {
+        history.push('/map')
+    }
+
     return (
         <Page>
             <Header title={'Lodge Traveler'} subtitle={'Utah edition'} />

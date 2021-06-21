@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import { useHistory } from 'react-router-dom'
 // import mapStyles from './mapStyles'
 import { 
     GoogleMap, 
@@ -70,10 +71,9 @@ function Map() {
 const Page = styled.main`
     position: relative;
     box-sizing: border-box;
-    // padding: 200px 0px 0px 0px;
     height: 100vh;
     width: 100vw;
-    border: 4px solid lightcoral;
+    // border: 4px solid lightcoral;
 `
 
 const Title = styled.h1`
@@ -107,10 +107,16 @@ const Subtitle = styled.h1`
 const WrappedMap = withScriptjs(withGoogleMap(Map))
 
 export default function MapPage() {
+    const history = useHistory()
+
+    function handleClick() {
+        history.push('/')
+    }
+
     return (
         <Page>
             <Title>{'Choose a lodge'}</Title>
-            <Subtitle>{'for more details'}</Subtitle>
+            <Subtitle onClick={() => handleClick()}>{'for more details'}</Subtitle>
             <WrappedMap
                 googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_KEY}`}
                 loadingElement={<div style={{ height: '100%' }} />}
