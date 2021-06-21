@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Container = styled.div`
+    margin-top: 20px;
+    margin-bottom: 20px;
     padding: 0px 16px 0px 16px;
     // border: 1px solid dodgerblue;
     // border-bottom: 2px solid rgba(65, 65, 65, 0.2);

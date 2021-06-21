@@ -17,7 +17,7 @@ const ItemsWrapper = styled.div`
     margin-top: 64px;
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    // gap: 40px;
     // border: 1px dashed dodgerblue;
 `
 
