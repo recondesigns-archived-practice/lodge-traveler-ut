@@ -3,8 +3,6 @@ import { Switch, Route } from 'react-router-dom'
 import LandingPage from './LandingPage'
 import MapPage from './MapPage'
 import ListPage from './ListPage'
-
-import Header from './components/Header'
 // import designIcon from './assets/icons/design-icon.svg'
 // import mapStyles from './mapStyles'
 
@@ -80,7 +78,6 @@ export default function App() {
 
   return (
     <>
-    <Header />
     <Switch>
       <Route exact path={'/'}>
         <LandingPage />
