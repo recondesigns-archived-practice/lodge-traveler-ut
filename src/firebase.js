@@ -2,7 +2,7 @@ import firebase from 'firebase'
 import 'firebase/firestore'
 
 const firebaseConfig = {
-    apiKey: "AIzaSyB7OQkEP0EPXLHC3zKl6gpHhS5xPLIKJew",
+    apiKey: process.env.REACT_APP_GOOGLE_KEY,
     authDomain: "utah-lodges.firebaseapp.com",
     databaseURL: "https://utah-lodges-default-rtdb.firebaseio.com",
     projectId: "utah-lodges",
