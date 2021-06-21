@@ -1,5 +1,10 @@
 import React, { useState } from 'react'
+import { Switch, Route } from 'react-router-dom'
 import LandingPage from './LandingPage'
+import MapPage from './MapPage'
+import ListPage from './ListPage'
+
+import Header from './components/Header'
 // import designIcon from './assets/icons/design-icon.svg'
 // import mapStyles from './mapStyles'
 
@@ -74,7 +79,22 @@ const WrappedMap = withScriptjs(withGoogleMap(Map))
 export default function App() {
 
   return (
-    <LandingPage />
+    <>
+    <Header />
+    <Switch>
+      <Route exact path={'/'}>
+        <LandingPage />
+      </Route> 
+
+      <Route path={'/map'}>
+        <MapPage />
+      </Route> 
+
+      <Route path={'/list'}>
+        <ListPage />
+      </Route> 
+    </Switch>
+    </>
     // <div style={{ width: '100vw', height: '100vh' }}>
     //   <h1>{'Lodge Traveler - UT'}</h1>
     //   <WrappedMap
