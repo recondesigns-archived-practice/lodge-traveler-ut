@@ -23,12 +23,21 @@ export default function LandingPage() {
         history.push('/map')
     }
 
+    function goToListPage() {
+        history.push('/list')
+    }
+
     return (
         <Page>
             <Header title={'Lodge Traveler'} subtitle={'Utah edition'} />
             <Button
                 label={'Find a lodge'}
                 onClick={() => handleClick()}
+            /> 
+
+            <Button
+                label={'List page'}
+                onClick={() => goToListPage()}
             /> 
         </Page>
     )
