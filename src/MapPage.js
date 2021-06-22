@@ -11,6 +11,42 @@ import {
     InfoWindow
 } from 'react-google-maps'
 
+const Page = styled.main`
+    position: relative;
+    box-sizing: border-box;
+    height: 100vh;
+    width: 100vw;
+    // border: 4px solid lightcoral;
+`
+
+const Title = styled.h1`
+    padding-left: 20px;
+    position: absolute;
+    top: 80px;
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 32px;
+    line-height: 36px;
+    color: #414141;
+    z-index: 1;
+    // border: 1px dashed green;
+`
+
+const Subtitle = styled.h1`
+    padding-left: 20px;
+    position: absolute;
+    top: 120px;
+    font-family: Open Sans Condensed;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 40px;
+    color: rgba(65, 65, 65, 0.6);
+    z-index: 1;
+    // border: 1px dashed green;
+`
+
 function Map() {
     const [lodgeArr] = useContext(LodgeDataContext)
     const [selectedLodge, setSelectedLodge] = useState(null)
@@ -49,42 +85,6 @@ function Map() {
       </GoogleMap>
     )
   }
-
-const Page = styled.main`
-    position: relative;
-    box-sizing: border-box;
-    height: 100vh;
-    width: 100vw;
-    // border: 4px solid lightcoral;
-`
-
-const Title = styled.h1`
-    padding-left: 20px;
-    position: absolute;
-    top: 80px;
-    font-family: Open Sans;
-    font-style: normal;
-    font-weight: 800;
-    font-size: 32px;
-    line-height: 36px;
-    color: #414141;
-    z-index: 1;
-    // border: 1px dashed green;
-`
-
-const Subtitle = styled.h1`
-    padding-left: 20px;
-    position: absolute;
-    top: 120px;
-    font-family: Open Sans Condensed;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 36px;
-    line-height: 40px;
-    color: rgba(65, 65, 65, 0.6);
-    z-index: 1;
-    // border: 1px dashed green;
-`
   
 const WrappedMap = withScriptjs(withGoogleMap(Map))
 
