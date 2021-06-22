@@ -1,5 +1,6 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
+// import firebase from './firebase'
 import LandingPage from './LandingPage'
 import MapPage from './MapPage'
 import ListPage from './ListPage'
@@ -10,7 +11,7 @@ export default function App() {
     <>
       <Switch>
         <Route exact path={'/'}>
-          <LandingPage />
+          <LandingPage data={'hello world'} />
         </Route> 
 
         <Route path={'/map'}>

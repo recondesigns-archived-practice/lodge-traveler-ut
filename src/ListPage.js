@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
+import { LodgeDataContext } from './context/LodgeData'
 import Header from './components/Header'
 import ListItem from './components/ListItem'
-
-import firebase from './firebase'
 
 const Page = styled.main`
     box-sizing: border-box;
@@ -17,49 +16,13 @@ const ItemsWrapper = styled.div`
     margin-top: 64px;
     display: flex;
     flex-direction: column;
-    // gap: 40px;
     // border: 1px dashed dodgerblue;
 `
 
 export default function ListPage() {
-    const [isLoading, setIsLoading] = useState(false)
-    const [lodges, setLodges] = useState([])
-    const ref = firebase.firestore().collection('lodges')
-
-    // function getLodges() {
-    //     if (isLoading === false) {
-    //         setIsLoading(true)
-    //     }
-
-    //     ref.onSnapshot((snapShot) => {
-    //         const items = []
-    //         snapShot.forEach((doc) => {
-    //             items.push(doc.data())
-    //         })
-
-    //         setLodges(items)
-    //     })
-    // }
-
-    useEffect(() => {
-        function getLodges() {
-            if (isLoading === false) {
-                setIsLoading(true)
-            }
+    const [lodgeArr] = useContext(LodgeDataContext)   
     
-            ref.onSnapshot((snapShot) => {
-                const items = []
-                snapShot.forEach((doc) => {
-                    items.push(doc.data())
-                })
-    
-                setLodges(items)
-            })
-        }
-        getLodges()
-    }, [isLoading, ref])
-    
-    let list = lodges.map((lodge) => {
+    let list = lodgeArr.map((lodge) => {
         const { 
             name,
             number,
@@ -90,7 +53,7 @@ export default function ListPage() {
         <Page>
             <Header title={'Salt Lake City'} subtitle={'Utah'} />
             <ItemsWrapper>
-                {(lodges !== null) ? list : <p>{'Still loading...'}</p>}
+                {(lodgeArr !== null) ? list : <p>{'Still loading...'}</p>}
             </ItemsWrapper>
         </Page>
     )

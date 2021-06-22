@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import styled from 'styled-components'
 import { useHistory } from 'react-router-dom'
+import { LodgeDataContext } from './context/LodgeData'
 // import mapStyles from './mapStyles'
 import { 
     GoogleMap, 
@@ -10,43 +11,25 @@ import {
     InfoWindow
 } from 'react-google-maps'
 
-const lodgeData = [
-    {
-      name: 'burnet',
-      title: 'Burnet, TX',
-      paragraph: 'Not really liking it here anymore.',
-      coordinates: {
-        lat: 30.7582,
-        lng: -98.2284
-      }
-    },
-    {
-      name: 'austin',
-      title: 'Austin, TX',
-      paragraph: 'Would be coold to do the downtown thing here in the winter.',
-      coordinates: {
-        lat: 30.2672,
-        lng: -97.7431
-      }
-    }
-  ]
-
 function Map() {
+    const [lodgeArr] = useContext(LodgeDataContext)
     const [selectedLodge, setSelectedLodge] = useState(null)
 
     return (
       <GoogleMap
         defaultZoom={10}
-        defaultCenter={{ lat: 30.7582, lng: -98.2284 }}
+        defaultCenter={{ lat: 40.76184803898829, lng: -111.89785924085847 }}
         defaultOptions={{disableDefaultUI: true}}
         // defaultOptions={{styles: mapStyles}}
       > 
   
-      {lodgeData.map((lodge) => {
+      {lodgeArr.map((lodge) => {
+        const { name, lat, lng } = lodge
+
         return (
           <Marker
-            key={lodge.name}
-            position={lodge.coordinates}
+            key={name}
+            position={{ lat: lat, lng: lng }}
             onClick={() => setSelectedLodge(lodge)}
             // icon={{
             //   url: designIcon,
@@ -57,10 +40,9 @@ function Map() {
       })}
   
       {selectedLodge && (
-        <InfoWindow position={selectedLodge.coordinates} onCloseClick={() => setSelectedLodge(null)}>
+        <InfoWindow position={{lat: selectedLodge.lat, lng: selectedLodge.lng}} onCloseClick={() => setSelectedLodge(null)}>
           <div>
-            <h4>{selectedLodge.title}</h4>
-            <p>{selectedLodge.paragraph}</p>
+            <h4>{`${selectedLodge.name} No.${selectedLodge.number}`}</h4>
           </div>
         </InfoWindow>
       )}
@@ -107,22 +89,22 @@ const Subtitle = styled.h1`
 const WrappedMap = withScriptjs(withGoogleMap(Map))
 
 export default function MapPage() {
-    const history = useHistory()
+  const history = useHistory()
 
-    function handleClick() {
-        history.push('/')
-    }
+  function handleClick() {
+      history.push('/')
+  }
 
-    return (
-        <Page>
-            <Title>{'Salt Lake City'}</Title>
-            <Subtitle onClick={() => handleClick()}>{'Utah'}</Subtitle>
-            <WrappedMap
-                googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_KEY}`}
-                loadingElement={<div style={{ height: '100%' }} />}
-                containerElement={<div style={{ height: '100%' }} />}
-                mapElement={<div style={{ height: '100%' }} />}
-            />
-        </Page>
-    )
+  return (
+      <Page>
+          <Title>{'Salt Lake City'}</Title>
+          <Subtitle onClick={() => handleClick()}>{'Utah'}</Subtitle>
+          <WrappedMap
+              googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_KEY}`}
+              loadingElement={<div style={{ height: '100%' }} />}
+              containerElement={<div style={{ height: '100%' }} />}
+              mapElement={<div style={{ height: '100%' }} />}
+          />
+      </Page>
+  )
 }
