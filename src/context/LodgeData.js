@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect } from 'react'
 // import firebase from './firebase'
 import firebase from '../firebase'
 
@@ -8,18 +8,18 @@ export default function LodgeData({ children }) {
     const [lodgeArr, setLodgeArr] = useState([])
     // const [isLoading, setIsLoading] = useState(false)
     // const [lodges, setLodges] = useState([])
-    const ref = firebase.firestore().collection('lodges')
+    // const ref = firebase.firestore().collection('lodges')
 
-    const getLodges = useCallback(() => {
-        ref.onSnapshot((snapShot) => {
-            const items = []
-            snapShot.forEach((doc) => {
-                items.push(doc.data())
-            })
+    // const getLodges = useCallback(() => {
+    //     ref.onSnapshot((snapShot) => {
+    //         const items = []
+    //         snapShot.forEach((doc) => {
+    //             items.push(doc.data())
+    //         })
 
-            setLodgeArr(items)
-        })
-    }, [])
+    //         setLodgeArr(items)
+    //     })
+    // },[])
 
     useEffect(() => {
         // const getLodges = () => {
@@ -32,27 +32,29 @@ export default function LodgeData({ children }) {
         //         setLodgeArr(items)
         //     })
         // }
+        const ref = firebase.firestore().collection('lodges')
 
-        // function getLodges() {
-        //     if (isLoading === false) {
-        //         setIsLoading(true)
-        //         console.log('its not loading.')
-        //     }
+
+        function getLodges() {
+            // if (isLoading === false) {
+            //     setIsLoading(true)
+            //     console.log('its not loading.')
+            // }
     
-        //     ref.onSnapshot((snapShot) => {
-        //         const items = []
-        //         snapShot.forEach((doc) => {
-        //             items.push(doc.data())
-        //         })
+            ref.onSnapshot((snapShot) => {
+                const items = []
+                snapShot.forEach((doc) => {
+                    items.push(doc.data())
+                })
     
-        //         setLodgeArr(items)
-        //     })
-        // }
+                setLodgeArr(items)
+            })
+        }
 
         getLodges()
-      },[getLodges])
+      },[])
 
-    //   console.log(9999, lodgeArr)
+      console.log(9999, lodgeArr)
 
     return (
         <LodgeDataContext.Provider value={[lodgeArr, setLodgeArr]}>
